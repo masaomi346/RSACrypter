@@ -10,7 +10,7 @@ import UIKit
 import Foundation
 import BigInt
 
-class ViewController: UIViewController,UITextFieldDelegate {
+class ViewController: UIViewController,UITextFieldDelegate,UITextViewDelegate {
     
     var p:BigInt = 0
     var q:BigInt = 0
@@ -32,6 +32,8 @@ class ViewController: UIViewController,UITextFieldDelegate {
         textField1.delegate = self
         textField2.delegate = self
         textField3.delegate = self
+        textView1.delegate = self
+        textView2.delegate = self
         textView1.text = ""
         textView2.text = ""
         p = PrimeNumber(bit: 512)
@@ -170,9 +172,18 @@ class ViewController: UIViewController,UITextFieldDelegate {
         return false
     }
     
-    //キーボードのreturnキー押す時の処理
+    //textFieldでreturnキー押す時の処理
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
+        return true
+    }
+    
+    //textViewでreturnキー押す時の処理
+    func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
+        if text == "\n" {
+            textView.resignFirstResponder()
+            return false
+        }
         return true
     }
 }
