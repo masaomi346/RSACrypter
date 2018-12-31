@@ -160,7 +160,7 @@ class ViewController: UIViewController,UITextFieldDelegate,UITextViewDelegate {
         return (a1 > b1) ? a1 : b1
     }
     
-    //複合できるか確認
+    //3つの素数で暗号・復号できるか確認
     func CheckCrypt(p: BigInt, q: BigInt, r: BigInt) -> Bool {
         let pq:BigInt = p * q
         var crypt:BigInt = Mod(num: BigInt(sample)!, exp: r, a: pq)
